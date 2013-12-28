@@ -11,7 +11,8 @@ public class Main {
     public static void main(String[] args) {
         Lyrics l=new Lyrics("Coldplay","Fix you");
         
-        System.out.println(l.getLyrics());
+        System.out.println(l.fromLyricWiki());
+        //System.out.println(l.fromMetroLyrics());
     }
     
 }

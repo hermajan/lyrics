@@ -20,25 +20,39 @@ public class Lyrics {
     public String getTrack() { return track; }
     public void setTrack(String track) { this.track = track; }
     public String getUrl() { return url; }
-    public final void setUrl() {
-        try {
-            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+track,"useskin=wikiamobile",null);
-            url=uri.toASCIIString();
-        } catch(URISyntaxException use) { System.out.println(use); }        
-    }
     
     public Lyrics(String artist, String track) {
         this.artist = artist;
         this.track = track;
-        setUrl();
     }
     
-    public String getLyrics() {
+    public String fromLyricWiki() {
+        try {
+            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+track,"useskin=wikiamobile",null);
+            url=uri.toASCIIString();
+        } catch(URISyntaxException use) { System.out.println(use); }
+        
         Elements lyr=new Elements();
         try {
             Document doc=Jsoup.connect(url).get();
             doc.select(".rtMatcher").remove();
             lyr=doc.select(".lyricbox");
+        } catch(IOException ioe) { System.out.println(ioe); }
+        
+        return lyr.toString();
+    }
+    
+    public String fromMetroLyrics() {
+        try {
+            URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+artist+".html","",null);
+            url=uri.toASCIIString().replace("%20","-");
+        } catch(URISyntaxException use) { System.out.println(use); } 
+        
+        Elements lyr=new Elements();
+        try {
+            Document doc=Jsoup.connect(url).get();
+            lyr=doc.select("#lyrics-body-text");
+            //System.out.println(doc.select(".verse").html().replace("<br />","\n"));
         } catch(IOException ioe) { System.out.println(ioe); }
         
         return lyr.toString();
