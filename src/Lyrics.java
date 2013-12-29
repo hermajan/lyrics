@@ -32,15 +32,17 @@ public class Lyrics {
             url=uri.toASCIIString();
         } catch(URISyntaxException use) { System.out.println(use); }
         
-        Elements lyr=new Elements();
+        String output="";
         try {
             Document doc=Jsoup.connect(url).get();
-            doc.select(".rtMatcher").remove();
-            lyr=doc.select(".lyricbox");
+            doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); Extensions.removeComments(doc);
+            Elements lyr=doc.select(".lyricbox");
+            output=lyr.html().replace("<br />","");
         } catch(IOException ioe) { System.out.println(ioe); }
         
-        return lyr.toString();
+        return output;
     }
+    
     
     public String fromMetroLyrics() {
         try {
@@ -48,14 +50,15 @@ public class Lyrics {
             url=uri.toASCIIString().replace("%20","-");
         } catch(URISyntaxException use) { System.out.println(use); } 
         
-        Elements lyr=new Elements();
+        String output="";
         try {
             Document doc=Jsoup.connect(url).get();
-            lyr=doc.select("#lyrics-body-text");
-            //System.out.println(doc.select(".verse").html().replace("<br />","\n"));
+            Elements lyr=doc.select("#lyrics-body-text");
+            output=lyr.html().replace("<p class=\"verse\">","");
+            output=output.replace("<br /> ",System.getProperty("line.separator")).replace("</p>",System.getProperty( "line.separator"));
         } catch(IOException ioe) { System.out.println(ioe); }
         
-        return lyr.toString();
+        return output;
     }
 
     @Override
