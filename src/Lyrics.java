@@ -28,9 +28,9 @@ public class Lyrics {
     
     public String fromLyricWiki() {
         try {
-            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+track,"useskin=wikiamobile",null);
+            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+track,null,null);
             url=uri.toASCIIString();
-        } catch(URISyntaxException use) { System.out.println(use); }
+        } catch(URISyntaxException use) { System.err.println(use); }
         
         String output="";
         try {
@@ -38,17 +38,17 @@ public class Lyrics {
             doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); Extensions.removeComments(doc);
             Elements lyr=doc.select(".lyricbox");
             output=lyr.html().replace("<br />","");
-        } catch(IOException ioe) { System.out.println(ioe); }
+        } catch(IOException ioe) { System.err.println(ioe); }
         
+        if(output.equals("")) { System.err.println("Bad artist or track."); }
         return output;
     }
     
-    
     public String fromMetroLyrics() {
         try {
-            URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+artist+".html","",null);
+            URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+artist+".html",null,null);
             url=uri.toASCIIString().replace("%20","-");
-        } catch(URISyntaxException use) { System.out.println(use); } 
+        } catch(URISyntaxException use) { System.err.println(use); } 
         
         String output="";
         try {
@@ -56,8 +56,9 @@ public class Lyrics {
             Elements lyr=doc.select("#lyrics-body-text");
             output=lyr.html().replace("<p class=\"verse\">","");
             output=output.replace("<br /> ",System.getProperty("line.separator")).replace("</p>",System.getProperty( "line.separator"));
-        } catch(IOException ioe) { System.out.println(ioe); }
+        } catch(IOException ioe) { System.err.println(ioe); }
         
+        if(output.equals("")) { System.err.println("Bad artist or track."); }
         return output;
     }
 
