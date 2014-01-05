@@ -45,8 +45,6 @@ public class GUI extends javax.swing.JFrame {
         lastfmPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
-        apikeyLabel = new javax.swing.JLabel();
-        apikeyField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +63,9 @@ public class GUI extends javax.swing.JFrame {
         urlField.setEditable(false);
 
         lyricsText.setColumns(20);
+        lyricsText.setLineWrap(true);
         lyricsText.setRows(5);
+        lyricsText.setWrapStyleWord(true);
         jScrollPane1.setViewportView(lyricsText);
 
         providerLabel.setText("Provider:");
@@ -160,8 +160,6 @@ public class GUI extends javax.swing.JFrame {
 
         usernameLabel.setText("Username:");
 
-        apikeyLabel.setText("API key:");
-
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,20 +172,15 @@ public class GUI extends javax.swing.JFrame {
         lastfmPanelLayout.setHorizontalGroup(
             lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lastfmPanelLayout.createSequentialGroup()
+                .addComponent(usernameLabel)
+                .addGap(11, 11, 11)
                 .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(lastfmPanelLayout.createSequentialGroup()
-                        .addComponent(apikeyLabel)
-                        .addGap(22, 22, 22)
-                        .addComponent(apikeyField, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
-                    .addGroup(lastfmPanelLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
                         .addComponent(saveButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(lastfmPanelLayout.createSequentialGroup()
-                        .addComponent(usernameLabel)
-                        .addGap(11, 11, 11)
-                        .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)))
-                .addGap(10, 10, 10))
+                        .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))))
         );
         lastfmPanelLayout.setVerticalGroup(
             lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,12 +191,9 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(usernameLabel))
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(apikeyLabel)
-                    .addComponent(apikeyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(saveButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(saveButton)
+                .addContainerGap())
         );
 
         lyricTab.addTab("Last.fm", lastfmPanel);
@@ -229,7 +219,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void getLyricsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getLyricsButtonActionPerformed
         if(lastfmCheckBox.isSelected()) {
-            Lastfm lf=new Lastfm(usernameField.getText(),apikeyField.getText());
+            Lastfm lf=new Lastfm(usernameField.getText());
             artistField.setText(lf.getArtist()); trackField.setText(lf.getTrack());
         }
         
@@ -282,8 +272,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apikeyField;
-    private javax.swing.JLabel apikeyLabel;
     private javax.swing.JTextField artistField;
     private javax.swing.JLabel artistLabel;
     private javax.swing.JButton getLyricsButton;

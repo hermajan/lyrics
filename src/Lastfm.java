@@ -11,16 +11,15 @@ import org.jsoup.select.Elements;
  * @author DJohnny
  */
 public class Lastfm {
-    private String username,apikey;
+    private String username,apikey="468e0ae50dbce978240ce1e4e6031602";
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getApikey() { return apikey; }
     public void setApikey(String apikey) { this.apikey = apikey; }
 
-    public Lastfm(String username, String apikey) {
+    public Lastfm(String username) {
         this.username = username;
-        this.apikey = apikey;
     }
 
     public String getArtist() {
@@ -61,6 +60,6 @@ public class Lastfm {
     
     @Override
     public String toString() {
-        return "Lastfm{" + "username=" + username + ", apikey=" + apikey + '}';
+        return "Lastfm{" + "username=" + username + "}";
     }
 }
