@@ -1,3 +1,10 @@
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +16,21 @@
  * @author DJohnny
  */
 public class GUI extends javax.swing.JFrame {
-
+    Properties prop=new Properties();
+    
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        
+        try { prop.load(new FileInputStream("lyrics.properties"));
+        } catch (IOException ioe) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ioe);
+            System.err.println(ioe);
+        }
+        
+        usernameField.setText(prop.getProperty("username"));
     }
 
     /**
@@ -229,10 +245,11 @@ public class GUI extends javax.swing.JFrame {
         if(metroLyricsButton.isSelected()==true) { lyricsText.setText(lyr.fromMetroLyrics()); }
 
         urlField.setText(lyr.getUrl());
-        //logText.setText(System.err.getClass().toString());
     }//GEN-LAST:event_getLyricsButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    	Extensions.setProperty(prop,"username",usernameField.getText());
+        
         if(lastfmCheckBox.isSelected()==true) { getLyricsButton.doClick(); }
     }//GEN-LAST:event_saveButtonActionPerformed
 
