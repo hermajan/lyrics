@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.Objects;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Entities;
 import org.jsoup.select.Elements;
 
 
@@ -37,7 +38,9 @@ public class Lyrics {
             Document doc=Jsoup.connect(url).get();
             doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); Extensions.removeComments(doc);
             Elements lyr=doc.select(".lyricbox");
+            doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.html().replace("<br />","");
+            output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
         if(output.equals("")) { System.err.println("Bad artist or track."); }
@@ -54,8 +57,10 @@ public class Lyrics {
         try {
             Document doc=Jsoup.connect(url).get();
             Elements lyr=doc.select("#lyrics-body-text");
+            doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.html().replace("<p class=\"verse\">","");
             output=output.replace("<br /> ",System.getProperty("line.separator")).replace("</p>",System.getProperty( "line.separator"));
+            output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
         if(output.equals("")) { System.err.println("Bad artist or track."); }

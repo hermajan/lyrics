@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Entities;
 import org.jsoup.select.Elements;
 
 /**
@@ -33,7 +34,9 @@ public class Lastfm {
         try {
             Document doc=Jsoup.connect(url).get();
             Elements lyr=doc.select("artist");
-            output=lyr.first().html().replace("&amp;","&");
+            doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
+            output=lyr.first().html();
+            output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
         if(output.equals("")) { System.err.println("Bad artist."); }
@@ -51,7 +54,9 @@ public class Lastfm {
         try {
             Document doc=Jsoup.connect(url).get();
             Elements lyr=doc.select("name");
+            doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.first().html();
+            output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
         if(output.equals("")) { System.err.println("Bad track."); }

@@ -27,4 +27,10 @@ public class Extensions {
             else { removeComments(child); i++; }
         }
     }
+    
+    public static String parsing(String text) {
+        text=text.replace("&quot;","\"").replace("&apos;","'");
+        text=text.replace("&amp;","&");
+        return text;
+    }
 }
