@@ -76,7 +76,7 @@
 
         <echo message="Packaging ${application.title} into a single JAR at ${store.jar}"/>
 
-        <delete dir="${store.dir}"/>
+        <delete file="${store.jar}"/>
         <mkdir dir="${store.dir}"/>
 
         <tstamp>

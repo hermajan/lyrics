@@ -45,6 +45,9 @@ public class Lyrics {
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
+        if(output.contains("<span") && output.contains("title=\"Instrumental\"")) {
+            output="This is instrumental song with no lyrics.";
+        }
         if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
