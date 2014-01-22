@@ -10,7 +10,8 @@ import org.jsoup.select.Elements;
 
 
 /**
- *
+ * Handling and obtaining lyrics.
+ * 
  * @author DJohnny
  */
 public class Lyrics {
@@ -43,7 +44,7 @@ public class Lyrics {
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { System.err.println("Bad artist or track."); }
+        if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
     
@@ -51,7 +52,7 @@ public class Lyrics {
         try {
             URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+artist+".html",null,null);
             url=uri.toASCIIString().replace("%20","-");
-        } catch(URISyntaxException use) { System.err.println(use); } 
+        } catch(URISyntaxException use) { System.err.println(use); }
         
         String output="";
         try {
@@ -63,7 +64,7 @@ public class Lyrics {
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { System.err.println("Bad artist or track."); }
+        if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
 

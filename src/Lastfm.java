@@ -8,7 +8,8 @@ import org.jsoup.nodes.Entities;
 import org.jsoup.select.Elements;
 
 /**
- *
+ * Getting information from Last.fm through their api.
+ * 
  * @author DJohnny
  */
 public class Lastfm {
@@ -39,7 +40,7 @@ public class Lastfm {
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { System.err.println("Bad artist."); }
+        if(output.equals("")) { output+="Error: Can't get artist from Last.fm."; }
         return output;
     }
     
@@ -59,7 +60,7 @@ public class Lastfm {
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { System.err.println("Bad track."); }
+        if(output.equals("")) { output+="Error: Can't get track from Last.fm."; }
         return output;
     }
     
