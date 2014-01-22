@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.Properties;
 import org.jsoup.nodes.Node;
 
-
 /**
- *
+ * Library for some useful methods.
+ * 
  * @author DJohnny
  */
 public class Extensions {
@@ -32,5 +32,15 @@ public class Extensions {
         text=text.replace("&quot;","\"").replace("&apos;","'");
         text=text.replace("&amp;","&");
         return text;
+    }
+    
+    public static String capitalizeFirstLetters(String text) {
+        if(text.length()==0) { return ""; }
+        String[] array=text.split(" ");
+        StringBuilder sb=new StringBuilder();
+        for(String word:array) {
+            sb.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+        }          
+        return sb.toString().trim();
     }
 }

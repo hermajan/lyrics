@@ -30,7 +30,8 @@ public class Lyrics {
     
     public String fromLyricWiki() {
         try {
-            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+track,null,null);
+            String capitalizedTrack=Extensions.capitalizeFirstLetters(track);
+            URI uri=new URI("http","lyrics.wikia.com","/"+artist+":"+capitalizedTrack,null,null);
             url=uri.toASCIIString();
         } catch(URISyntaxException use) { System.err.println(use); }
         
