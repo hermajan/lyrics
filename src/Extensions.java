@@ -31,6 +31,7 @@ public class Extensions {
     public static String parsing(String text) {
         text=text.replace("&quot;","\"").replace("&apos;","'");
         text=text.replace("&amp;","&");
+        text=text.replace("<i>","").replace("</i>","");
         return text;
     }
     

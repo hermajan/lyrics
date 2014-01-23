@@ -54,7 +54,8 @@ public class Lyrics {
     
     public String fromMetroLyrics() {
         try {
-            URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+artist+".html",null,null);
+            String fixArtist=artist.replace("/","").replace("-","");
+            URI uri=new URI("http","www.metrolyrics.com","/"+track+"-lyrics-"+fixArtist+".html",null,null);
             url=uri.toASCIIString().replace("%20","-");
         } catch(URISyntaxException use) { System.err.println(use); }
         
