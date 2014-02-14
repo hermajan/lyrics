@@ -41,7 +41,7 @@ public class Lyrics {
             doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); Extensions.removeComments(doc);
             Elements lyr=doc.select(".lyricbox");
             doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
-            output=lyr.html().replace("<br />","");
+            output=lyr.html();
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
@@ -65,7 +65,7 @@ public class Lyrics {
             Elements lyr=doc.select("#lyrics-body-text");
             doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.html().replace("<p class=\"verse\">","");
-            output=output.replace("<br /> ",System.getProperty("line.separator")).replace("</p>",System.getProperty( "line.separator"));
+            output=output.replace("</p>","<br/><br/>");
             output=Extensions.parsing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
