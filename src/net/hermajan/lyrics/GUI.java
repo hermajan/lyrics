@@ -1,37 +1,25 @@
+package net.hermajan.lyrics;
 
 import java.awt.Font;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.text.html.HTMLDocument;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import net.hermajan.lyrics.providers.LyricWiki;
+import net.hermajan.lyrics.providers.MetroLyrics;
+import net.hermajan.lyrics.providers.Provider;
 
 /**
- *
+ * GUI (Graphical user interface) for the application.
+ * 
  * @author DJohnny
  */
 public class GUI extends javax.swing.JFrame {
-    Properties prop=new Properties();
+    private final Properties prop=Settings.loadProperties();
     
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
-        
-        try { prop.load(new FileInputStream("lyrics.properties"));
-        } catch (IOException ioe) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ioe);
-            System.err.println(ioe);
-        }
-        
         usernameField.setText(prop.getProperty("username"));
     }
 
@@ -127,13 +115,12 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(lyricPanelLayout.createSequentialGroup()
-                                .addComponent(providerLabel)
-                                .addGap(0, 71, Short.MAX_VALUE))
+                            .addComponent(providerLabel)
                             .addComponent(metroLyricsButton)
                             .addComponent(lyricWikiButton)
                             .addComponent(getLyricsButton)
-                            .addComponent(lastfmCheckBox))))
+                            .addComponent(lastfmCheckBox))
+                        .addGap(0, 24, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         lyricPanelLayout.setVerticalGroup(
@@ -237,21 +224,26 @@ public class GUI extends javax.swing.JFrame {
             artistField.setText(lf.getArtist()); trackField.setText(lf.getTrack());
         }
         
-        Lyrics lyr=new Lyrics(artistField.getText(),trackField.getText());
-
-        if(lyricWikiButton.isSelected()==true) { lyricsText.setText(lyr.fromLyricWiki()); }
-        if(metroLyricsButton.isSelected()==true) { lyricsText.setText(lyr.fromMetroLyrics()); }
+        Provider lyric=new LyricWiki(artistField.getText(),trackField.getText());
+        if(lyricWikiButton.isSelected()==true) { 
+            lyric=new LyricWiki(artistField.getText(),trackField.getText());
+            lyricsText.setText(lyric.parsing());
+        }
+        if(metroLyricsButton.isSelected()==true) { 
+            lyric=new MetroLyrics(artistField.getText(),trackField.getText());
+            lyricsText.setText(lyric.parsing());
+        }
         
         // Sets default rendering font type.
         Font font=lyricsText.getFont();
         String settingFont="body { font-family: "+font.getFamily()+"; "+"font-size: "+font.getSize()+"pt; }";
         ((HTMLDocument)lyricsText.getDocument()).getStyleSheet().addRule(settingFont);
         
-        urlField.setText(lyr.getUrl());
+        urlField.setText(lyric.getURL());
     }//GEN-LAST:event_getLyricsButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-    	Extensions.setProperty(prop,"username",usernameField.getText());
+    	Settings.saveProperty("username",usernameField.getText());
         
         if(lastfmCheckBox.isSelected()==true) { getLyricsButton.doClick(); }
     }//GEN-LAST:event_saveButtonActionPerformed
