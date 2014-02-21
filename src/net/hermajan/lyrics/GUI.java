@@ -234,7 +234,7 @@ public class GUI extends javax.swing.JFrame {
             lyricsText.setText(lyric.parsing());
         }
         
-        // Sets default rendering font type.
+        // Sets a default rendering font type.
         Font font=lyricsText.getFont();
         String settingFont="body { font-family: "+font.getFamily()+"; "+"font-size: "+font.getSize()+"pt; }";
         ((HTMLDocument)lyricsText.getDocument()).getStyleSheet().addRule(settingFont);

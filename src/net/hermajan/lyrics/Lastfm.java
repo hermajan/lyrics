@@ -9,7 +9,7 @@ import org.jsoup.nodes.Entities;
 import org.jsoup.select.Elements;
 
 /**
- * Getting information from Last.fm through their api.
+ * Getting information from the Last.fm through their API.
  * 
  * @author DJohnny
  * @see http://www.last.fm/api/intro

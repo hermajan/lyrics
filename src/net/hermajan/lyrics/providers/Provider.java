@@ -19,12 +19,12 @@ abstract public class Provider {
     
     /**
      * 
-     * @return Provider with HTML tags.
+     * @return Lyrics with HTML tags.
      */
     abstract public String parsing();
     /**
      * 
-     * @return Provider as clean text (without HTML tags).
+     * @return Lyrics as clean text (without HTML tags).
      */
     abstract public String parsingText();
 
