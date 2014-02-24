@@ -100,8 +100,9 @@
                                   <Component id="lyricWikiButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="getLyricsButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lastfmCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="karaokeTextyButton" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -131,14 +132,16 @@
                           <Group type="102" attributes="0">
                               <Component id="providerLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="karaokeTextyButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="lyricWikiButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="metroLyricsButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="lastfmCheckBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="getLyricsButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="239" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="218" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
@@ -230,6 +233,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JRadioButton" name="karaokeTextyButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="providers"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Karaoke texty"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="lastfmPanel">

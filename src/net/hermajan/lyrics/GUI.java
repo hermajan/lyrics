@@ -3,13 +3,13 @@ package net.hermajan.lyrics;
 import java.awt.Font;
 import java.util.Properties;
 import javax.swing.text.html.HTMLDocument;
+import net.hermajan.lyrics.providers.KaraokeTexty;
 import net.hermajan.lyrics.providers.LyricWiki;
 import net.hermajan.lyrics.providers.MetroLyrics;
 import net.hermajan.lyrics.providers.Provider;
 
 /**
  * GUI (Graphical user interface) for the application.
- * 
  * @author DJohnny
  */
 public class GUI extends javax.swing.JFrame {
@@ -48,6 +48,7 @@ public class GUI extends javax.swing.JFrame {
         lastfmCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         lyricsText = new javax.swing.JEditorPane();
+        karaokeTextyButton = new javax.swing.JRadioButton();
         lastfmPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
@@ -92,6 +93,9 @@ public class GUI extends javax.swing.JFrame {
         lyricsText.setPreferredSize(new java.awt.Dimension(104, 64));
         jScrollPane1.setViewportView(lyricsText);
 
+        providers.add(karaokeTextyButton);
+        karaokeTextyButton.setText("Karaoke texty");
+
         javax.swing.GroupLayout lyricPanelLayout = new javax.swing.GroupLayout(lyricPanel);
         lyricPanel.setLayout(lyricPanelLayout);
         lyricPanelLayout.setHorizontalGroup(
@@ -119,8 +123,9 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(metroLyricsButton)
                             .addComponent(lyricWikiButton)
                             .addComponent(getLyricsButton)
-                            .addComponent(lastfmCheckBox))
-                        .addGap(0, 24, Short.MAX_VALUE)))
+                            .addComponent(lastfmCheckBox)
+                            .addComponent(karaokeTextyButton))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         lyricPanelLayout.setVerticalGroup(
@@ -143,14 +148,16 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(lyricPanelLayout.createSequentialGroup()
                         .addComponent(providerLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(karaokeTextyButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lyricWikiButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(metroLyricsButton)
-                        .addGap(10, 10, 10)
+                        .addGap(11, 11, 11)
                         .addComponent(lastfmCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getLyricsButton)
-                        .addGap(0, 239, Short.MAX_VALUE))
+                        .addGap(0, 218, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -225,21 +232,23 @@ public class GUI extends javax.swing.JFrame {
         }
         
         Provider lyric=new LyricWiki(artistField.getText(),trackField.getText());
+        if(karaokeTextyButton.isSelected()==true) { 
+            lyric=new KaraokeTexty(artistField.getText(),trackField.getText());
+        }
         if(lyricWikiButton.isSelected()==true) { 
             lyric=new LyricWiki(artistField.getText(),trackField.getText());
-            lyricsText.setText(lyric.parsing());
         }
         if(metroLyricsButton.isSelected()==true) { 
             lyric=new MetroLyrics(artistField.getText(),trackField.getText());
-            lyricsText.setText(lyric.parsing());
         }
+        
+        urlField.setText(lyric.getURL());
+        lyricsText.setText(lyric.parsing());
         
         // Sets a default rendering font type.
         Font font=lyricsText.getFont();
         String settingFont="body { font-family: "+font.getFamily()+"; "+"font-size: "+font.getSize()+"pt; }";
         ((HTMLDocument)lyricsText.getDocument()).getStyleSheet().addRule(settingFont);
-        
-        urlField.setText(lyric.getURL());
     }//GEN-LAST:event_getLyricsButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -289,6 +298,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel artistLabel;
     private javax.swing.JButton getLyricsButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton karaokeTextyButton;
     private javax.swing.JCheckBox lastfmCheckBox;
     private javax.swing.JPanel lastfmPanel;
     private javax.swing.JPanel lyricPanel;
