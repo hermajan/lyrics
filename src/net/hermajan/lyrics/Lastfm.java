@@ -51,7 +51,7 @@ public class Lastfm {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { output+="Error: Can't get artist from Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get artist from Last.fm."; }
         return output;
     }
     
@@ -66,7 +66,7 @@ public class Lastfm {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { output+="Error: Can't get track from Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get track from Last.fm."; }
         return output;
     }
     
