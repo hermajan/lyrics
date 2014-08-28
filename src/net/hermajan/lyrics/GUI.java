@@ -79,20 +79,22 @@ public class GUI extends javax.swing.JFrame {
         artistLabel.setLabelFor(artistField);
         artistLabel.setText("Artist:");
 
-        artistField.setToolTipText("");
+        artistField.setToolTipText("Artist of the song.");
         artistField.setPreferredSize(new java.awt.Dimension(445, 20));
 
         trackLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         trackLabel.setLabelFor(trackField);
         trackLabel.setText("Track:");
 
+        trackField.setToolTipText("Name of the song.");
         trackField.setPreferredSize(new java.awt.Dimension(445, 20));
 
         urlLabel.setLabelFor(urlField);
         urlLabel.setText("URL:");
-        urlLabel.setToolTipText("Uniform resource locator");
+        urlLabel.setToolTipText("Uniform resource locator.");
 
         urlField.setEditable(false);
+        urlField.setToolTipText("URL of the song on a selected provider website.");
         urlField.setDoubleBuffered(true);
         urlField.setMaximumSize(new java.awt.Dimension(380, 20));
         urlField.setPreferredSize(new java.awt.Dimension(450, 20));
@@ -108,6 +110,7 @@ public class GUI extends javax.swing.JFrame {
         metroLyricsButton.setMargin(new java.awt.Insets(0, 2, 0, 2));
 
         getLyricsButton.setText("Get lyrics");
+        getLyricsButton.setToolTipText("Gets lyrics from a selected provider.");
         getLyricsButton.setPreferredSize(new java.awt.Dimension(100, 23));
         getLyricsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +139,7 @@ public class GUI extends javax.swing.JFrame {
         karaokeTextyButton.setMargin(new java.awt.Insets(0, 2, 0, 2));
 
         urlOpenButton.setText("Open");
+        urlOpenButton.setToolTipText("Opens lyrics of the song in a browser.");
         urlOpenButton.setPreferredSize(new java.awt.Dimension(100, 23));
         urlOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +218,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(textScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         lyricTab.addTab("Lyric", lyricPanel);
@@ -222,10 +226,13 @@ public class GUI extends javax.swing.JFrame {
         lastfmPanel.setPreferredSize(new java.awt.Dimension(470, 590));
 
         usernameLabel.setText("Username:");
+        usernameLabel.setToolTipText("");
 
+        usernameField.setToolTipText("Last.fm username.");
         usernameField.setPreferredSize(new java.awt.Dimension(340, 20));
 
         saveButton.setText("Save");
+        saveButton.setToolTipText("Saves a Last.fm username.");
         saveButton.setPreferredSize(new java.awt.Dimension(70, 23));
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,16 +241,17 @@ public class GUI extends javax.swing.JFrame {
         });
 
         lastfmUrlField.setEditable(false);
+        lastfmUrlField.setToolTipText("URL of the song on the Last.fm.");
         lastfmUrlField.setDoubleBuffered(true);
         lastfmUrlField.setMaximumSize(new java.awt.Dimension(450, 20));
         lastfmUrlField.setPreferredSize(new java.awt.Dimension(450, 20));
 
         lastfmUrlLabel.setLabelFor(urlField);
         lastfmUrlLabel.setText("URL of the song:");
-        lastfmUrlLabel.setToolTipText("Uniform resource locator");
+        lastfmUrlLabel.setToolTipText("Uniform resource locator.");
 
         lastfmUrlOpenButton.setText("Open");
-        lastfmUrlOpenButton.setToolTipText("");
+        lastfmUrlOpenButton.setToolTipText("Opens song on the Last.fm in a browser.");
         lastfmUrlOpenButton.setPreferredSize(new java.awt.Dimension(100, 23));
         lastfmUrlOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +294,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(lastfmUrlOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addComponent(lastfmUrlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(495, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
         );
 
         lyricTab.addTab("Last.fm", lastfmPanel);
