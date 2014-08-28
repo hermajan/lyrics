@@ -26,55 +26,65 @@ public class Lastfm {
         this.username = username;
     }
 
-    /**
-     * Make recent track URL.
-     * @see http://www.last.fm/api/show/user.getRecentTracks
-     * @return Recent track URL.
-     */
-    public String makeRecentTrackURL() {
-        String url="";
+	/**
+	 * Creates API request URL.
+	 * @param method Requested method.
+	 * @return Request URL.
+	 */
+	public String createAPIrequestURL(String method) {
+		String url="";
         try {
-            URI uri=new URI("http","ws.audioscrobbler.com","/2.0/","method=user.getrecenttracks&user="+username+"&api_key="+apikey+"&limit=1",null);
+            URI uri=new URI("http","ws.audioscrobbler.com","/2.0/","method="+method+"&user="+username+"&api_key="+apikey+"&limit=1",null);
             url=uri.toASCIIString();
         } catch(URISyntaxException use) { System.err.println(use); }
         return url;
-    }
-    
-	public String getData(String which) {
-	    String url=makeRecentTrackURL();
+	}
+	
+    /**
+     * Obtains information.
+	 * @param method Method which is needed to call.
+	 * @param info Information which is needed to obtain.
+     * @return Information about a recent track.
+     */
+    public String obtainInformation(String method,String info) {
+        String url=createAPIrequestURL(method);
         String output="";
         try {
             Document doc=Jsoup.connect(url).get();
-            Elements lyr=doc.select(which);
+            Elements lyr=doc.select(info);
             doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.first().html();
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
         return output;
-	}
+    }
 	
     public String getArtist() {
-        String output=getData("artist");
+        String output=obtainInformation("user.getrecenttracks","artist");
         
-        if(output.isEmpty()) { output+="Error: Can't get artist from Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get artist from the Last.fm."; }
         return output;
     }
-    
     public String getTrack() {
-        String output=getData("name");
+        String output=obtainInformation("user.getrecenttracks","name");
 		
-        if(output.isEmpty()) { output+="Error: Can't get track from Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get track from the Last.fm."; }
         return output;
     }
-	
-	public String getURL() {
-		String output=getData("url");
+	public String getTrackURL() {
+		String output=obtainInformation("user.getrecenttracks","url");
         
-        if(output.isEmpty()) { output+="Error: Can't get URL from Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get URL from the Last.fm."; }
+        return output;
+	} 
+	public String getUserURL() {
+		String output=obtainInformation("user.getinfo","url");
+        
+        if(output.isEmpty()) { output+="Error: Can't get profile URL from the Last.fm."; }
         return output;
 	}
-    
+	
     @Override
     public String toString() {
         return "Last.fm" + " username is " + username + ".";
