@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
  * Getting information from the Last.fm through their API.
  * 
  * @author DJohnny
- * @see http://www.last.fm/api/intro
+ * @see <a href="http://www.last.fm/api/intro">http://www.last.fm/api/intro</a>
  */
 public class Lastfm {
     private String username,apikey="468e0ae50dbce978240ce1e4e6031602";
@@ -44,7 +44,7 @@ public class Lastfm {
      * Obtains information.
 	 * @param method Method which is needed to call.
 	 * @param info Information which is needed to obtain.
-     * @return Information about a recent track.
+     * @return Information.
      */
     public String obtainInformation(String method,String info) {
         String url=createAPIrequestURL(method);

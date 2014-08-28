@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
  * Obtaining lyrics from the MetroLyrics.
  * 
  * @author DJohnny
- * @see http://www.metrolyrics.com
+ * @see <a href="http://www.metrolyrics.com">http://www.metrolyrics.com</a>
  */
 public class MetroLyrics extends Provider {
     public MetroLyrics(String artist, String track) {
@@ -42,7 +42,7 @@ public class MetroLyrics extends Provider {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
 

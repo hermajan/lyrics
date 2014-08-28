@@ -21,7 +21,7 @@ public class GUI extends javax.swing.JFrame {
     private final Properties prop=Settings.loadProperties();
     
     /**
-     * Creates new form GUI
+     * Creates GUI.
      */
     public GUI() {
         initComponents();

@@ -11,7 +11,7 @@ public class Library {
     
     /**
      * Removes HTML tags for comments.
-     * @param node 
+     * @param node Node.
      */
     public static void removeComments(Node node) {
         for(int i=0;i<node.childNodes().size();) {
@@ -34,7 +34,7 @@ public class Library {
     
     /**
      * Capitalizes first letters of string.
-     * @param text
+     * @param text String which will method capitalize.
      * @return Capitalized string.
      */
     public static String capitalizeFirstLetters(String text) {

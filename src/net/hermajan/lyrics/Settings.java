@@ -26,8 +26,8 @@ public class Settings {
     
     /**
      * Saves a property to the file.
-     * @param name
-     * @param value
+     * @param name Name of the property.
+     * @param value Value which will be saved.
      */
     public static void saveProperty(String name,String value) {
         Properties file=Settings.loadProperties();

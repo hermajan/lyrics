@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
  * Obtaining lyrics from the LyricWiki.
  * 
  * @author DJohnny
- * @see http://lyrics.wikia.com/Lyrics_Wiki
+ * @see <a href="http://lyrics.wikia.com/Lyrics_Wiki">http://lyrics.wikia.com/Lyrics_Wiki</a>
  */
 public class LyricWiki extends Provider {
     public LyricWiki(String artist, String track) {

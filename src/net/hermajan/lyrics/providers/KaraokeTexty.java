@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 /**
  * Obtaining lyrics from the KaraokeTexty.
  * @author DJohnny
- * @see http://www.karaoketexty.cz
+ * @see <a href="http://www.karaoketexty.cz">http://www.karaoketexty.cz</a>
  */
 public class KaraokeTexty extends Provider {
     public KaraokeTexty(String artist, String track) {
@@ -65,7 +65,7 @@ public class KaraokeTexty extends Provider {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
 
