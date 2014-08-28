@@ -35,7 +35,8 @@ public class LyricWiki extends Provider {
         String output="";
         try {
             Document doc=Jsoup.connect(super.getURL()).get();
-            doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); Library.removeComments(doc);
+            doc.select(".rtMatcher").remove(); doc.select(".lyricsBreak").remove(); 
+			doc.select("script").remove(); Library.removeComments(doc);
             Elements lyr=doc.select(".lyricbox");
             doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
             output=lyr.html();
@@ -45,7 +46,7 @@ public class LyricWiki extends Provider {
         if(output.contains("<span") && output.contains("title=\"Instrumental\"")) {
             output="This is an instrumental song with no lyrics.";
         }
-        if(output.equals("")) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
         return output;
     }
     
