@@ -59,6 +59,9 @@ public class GUI extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
+        lastfmUrlField = new javax.swing.JTextField();
+        lastfmUrlLabel = new javax.swing.JLabel();
+        lastfmUrlOpenButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lyrics");
@@ -211,7 +214,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(textScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         lyricTab.addTab("Lyric", lyricPanel);
@@ -230,17 +233,43 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        lastfmUrlField.setEditable(false);
+        lastfmUrlField.setDoubleBuffered(true);
+        lastfmUrlField.setMaximumSize(new java.awt.Dimension(450, 20));
+        lastfmUrlField.setPreferredSize(new java.awt.Dimension(450, 20));
+
+        lastfmUrlLabel.setLabelFor(urlField);
+        lastfmUrlLabel.setText("URL of the song:");
+        lastfmUrlLabel.setToolTipText("Uniform resource locator");
+
+        lastfmUrlOpenButton.setText("Open");
+        lastfmUrlOpenButton.setToolTipText("");
+        lastfmUrlOpenButton.setPreferredSize(new java.awt.Dimension(100, 23));
+        lastfmUrlOpenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastfmUrlOpenButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout lastfmPanelLayout = new javax.swing.GroupLayout(lastfmPanel);
         lastfmPanel.setLayout(lastfmPanelLayout);
         lastfmPanelLayout.setHorizontalGroup(
             lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lastfmPanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(usernameLabel)
-                .addGap(5, 5, 5)
-                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(lastfmPanelLayout.createSequentialGroup()
+                        .addComponent(usernameLabel)
+                        .addGap(5, 5, 5)
+                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lastfmUrlField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(lastfmPanelLayout.createSequentialGroup()
+                            .addComponent(lastfmUrlLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lastfmUrlOpenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(5, 5, 5))
         );
         lastfmPanelLayout.setVerticalGroup(
@@ -251,7 +280,13 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastfmUrlLabel)
+                    .addComponent(lastfmUrlOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(lastfmUrlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(495, Short.MAX_VALUE))
         );
 
         lyricTab.addTab("Last.fm", lastfmPanel);
@@ -276,10 +311,12 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void getLyricsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getLyricsButtonActionPerformed
-        if(lastfmCheckBox.isSelected()) {
-            Lastfm lf=new Lastfm(usernameField.getText());
+        Lastfm lf=new Lastfm("");
+		if(lastfmCheckBox.isSelected()) {
+            lf.setUsername(usernameField.getText());
             artistField.setText(lf.getArtist()); trackField.setText(lf.getTrack());
         }
+		lastfmUrlField.setText(lf.getURL());
         
         Provider lyric=new LyricWiki(artistField.getText(),trackField.getText());
         if(karaokeTextyButton.isSelected()==true) { 
@@ -314,6 +351,14 @@ public class GUI extends javax.swing.JFrame {
             System.err.println(ex);
         }
     }//GEN-LAST:event_urlOpenButtonActionPerformed
+
+    private void lastfmUrlOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastfmUrlOpenButtonActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI(lastfmUrlField.getText()));
+        } catch(URISyntaxException|IOException ex) {
+            System.err.println(ex);
+        }
+    }//GEN-LAST:event_lastfmUrlOpenButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +403,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton karaokeTextyButton;
     private javax.swing.JCheckBox lastfmCheckBox;
     private javax.swing.JPanel lastfmPanel;
+    private javax.swing.JTextField lastfmUrlField;
+    private javax.swing.JLabel lastfmUrlLabel;
+    private javax.swing.JButton lastfmUrlOpenButton;
     private javax.swing.JPanel lyricPanel;
     private javax.swing.JTabbedPane lyricTab;
     private javax.swing.JRadioButton lyricWikiButton;
