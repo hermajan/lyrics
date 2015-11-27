@@ -16,8 +16,8 @@ import org.jsoup.select.Elements;
  * @see <a href="http://www.metrolyrics.com">http://www.metrolyrics.com</a>
  */
 public class MetroLyrics extends Provider {
-    public MetroLyrics(String artist, String track) {
-        super.setArtist(artist); super.setTrack(track);
+    public MetroLyrics(String artist, String song) {
+        super.setArtist(artist); super.setSong(song);
         this.makeURL();
     }
 
@@ -25,7 +25,7 @@ public class MetroLyrics extends Provider {
     public void makeURL() {
         try {
             String fixArtist=super.getArtist().replace("/","").replace("-","");
-            URI uri=new URI("http","www.metrolyrics.com","/"+super.getTrack()+"-lyrics-"+fixArtist+".html",null,null);
+            URI uri=new URI("http","www.metrolyrics.com","/"+super.getSong()+"-lyrics-"+fixArtist+".html",null,null);
             super.setURL(uri.toASCIIString().replace("%20","-"));
         } catch(URISyntaxException use) { System.err.println(use); }
     }
@@ -42,7 +42,7 @@ public class MetroLyrics extends Provider {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and song in the database."; }
         return output;
     }
 

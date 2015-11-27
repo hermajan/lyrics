@@ -66,16 +66,16 @@ public class Lastfm {
         if(output.isEmpty()) { output+="Error: Can't get artist from the Last.fm."; }
         return output;
     }
-    public String getTrack() {
+    public String getSong() {
         String output=obtainInformation("user.getrecenttracks","name");
 		
-        if(output.isEmpty()) { output+="Error: Can't get track from the Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get the song from the Last.fm."; }
         return output;
     }
-	public String getTrackURL() {
+	public String getSongURL() {
 		String output=obtainInformation("user.getrecenttracks","url");
         
-        if(output.isEmpty()) { output+="Error: Can't get URL from the Last.fm."; }
+        if(output.isEmpty()) { output+="Error: Can't get URL of song from the Last.fm."; }
         return output;
 	} 
 	public String getUserURL() {

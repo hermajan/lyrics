@@ -16,18 +16,18 @@ import org.jsoup.select.Elements;
  * @see <a href="http://www.karaoketexty.cz">http://www.karaoketexty.cz</a>
  */
 public class KaraokeTexty extends Provider {
-    public KaraokeTexty(String artist, String track) {
-        super.setArtist(artist); super.setTrack(track);
+    public KaraokeTexty(String artist, String song) {
+        super.setArtist(artist); super.setSong(song);
         this.makeURL();
     }
     
     @Override
     public void makeURL() {
-        String query=super.getArtist()+" - "+super.getTrack();
+        String query=super.getArtist()+" - "+super.getSong();
         String searchURL="";
         
         try {
-            URI uri=new URI("http","www.karaoketexty.cz","/search","q="+super.getTrack(),null);
+            URI uri=new URI("http","www.karaoketexty.cz","/search","q="+super.getSong(),null);
             searchURL=uri.toASCIIString().replace("&","%26");
         } catch(URISyntaxException use) { System.err.println(use); }
         
@@ -65,7 +65,7 @@ public class KaraokeTexty extends Provider {
             output=Library.replacing(output);
         } catch(IOException ioe) { System.err.println(ioe); }
         
-        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and song in the database."; }
         return output;
     }
 

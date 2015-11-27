@@ -16,16 +16,16 @@ import org.jsoup.select.Elements;
  * @see <a href="http://lyrics.wikia.com/Lyrics_Wiki">http://lyrics.wikia.com/Lyrics_Wiki</a>
  */
 public class LyricWiki extends Provider {
-    public LyricWiki(String artist, String track) {
-        super.setArtist(artist); super.setTrack(track);
+    public LyricWiki(String artist, String song) {
+        super.setArtist(artist); super.setSong(song);
         this.makeURL();
     }
     
     @Override
     public void makeURL() { 
         try {
-            String capitalizedTrack=Library.capitalizeFirstLetters(super.getTrack());
-            URI uri=new URI("http","lyrics.wikia.com","/"+super.getArtist()+":"+capitalizedTrack,null,null);
+            String capitalizedSong=Library.capitalizeFirstLetters(super.getSong());
+            URI uri=new URI("http","lyrics.wikia.com","/"+super.getArtist()+":"+capitalizedSong,null,null);
             super.setURL(uri.toASCIIString());
         } catch(URISyntaxException use) { System.err.println(use); }
     }
@@ -46,7 +46,7 @@ public class LyricWiki extends Provider {
         if(output.contains("<span") && output.contains("title=\"Instrumental\"")) {
             output="This is an instrumental song with no lyrics.";
         }
-        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and track in the database."; }
+        if(output.isEmpty()) { output+="Error: There are no lyrics for this artist and song in the database."; }
         return output;
     }
     

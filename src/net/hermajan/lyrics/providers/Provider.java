@@ -6,12 +6,12 @@ package net.hermajan.lyrics.providers;
  * @author DJohnny
  */
 abstract public class Provider {
-    private String artist,track,url="";
+    private String artist, song, url="";
 
     public String getArtist() { return artist; }
     public void setArtist(String artist) { this.artist=artist; }
-    public String getTrack() { return track; }
-    public void setTrack(String track) { this.track=track; }
+    public String getSong() { return song; }
+    public void setSong(String song) { this.song=song; }
     
     public String getURL() { return url; }
     public void setURL(String url) { this.url=url; }
@@ -30,6 +30,6 @@ abstract public class Provider {
 
     @Override
     public String toString() {
-        return "Lyrics for "+artist+" - "+track+" from "+url;
+        return "Lyrics for "+artist+" - "+song+" from "+url;
     }
 }

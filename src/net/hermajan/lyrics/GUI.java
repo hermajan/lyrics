@@ -43,8 +43,8 @@ public class GUI extends javax.swing.JFrame {
         lyricPanel = new javax.swing.JPanel();
         artistLabel = new javax.swing.JLabel();
         artistField = new javax.swing.JTextField();
-        trackLabel = new javax.swing.JLabel();
-        trackField = new javax.swing.JTextField();
+        songLabel = new javax.swing.JLabel();
+        songField = new javax.swing.JTextField();
         urlLabel = new javax.swing.JLabel();
         urlField = new javax.swing.JTextField();
         providerLabel = new javax.swing.JLabel();
@@ -69,7 +69,6 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lyrics");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
         lyricTab.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -85,12 +84,12 @@ public class GUI extends javax.swing.JFrame {
         artistField.setToolTipText("Artist of the song.");
         artistField.setPreferredSize(new java.awt.Dimension(445, 20));
 
-        trackLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        trackLabel.setLabelFor(trackField);
-        trackLabel.setText("Track:");
+        songLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        songLabel.setLabelFor(songField);
+        songLabel.setText("Song:");
 
-        trackField.setToolTipText("Name of the song.");
-        trackField.setPreferredSize(new java.awt.Dimension(445, 20));
+        songField.setToolTipText("Name of the song.");
+        songField.setPreferredSize(new java.awt.Dimension(445, 20));
 
         urlLabel.setLabelFor(urlField);
         urlLabel.setText("URL:");
@@ -196,9 +195,9 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(lyricPanelLayout.createSequentialGroup()
-                                    .addComponent(trackLabel)
+                                    .addComponent(songLabel)
                                     .addGap(5, 5, 5)
-                                    .addComponent(trackField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(songField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(lyricPanelLayout.createSequentialGroup()
                                     .addComponent(artistLabel)
                                     .addGap(5, 5, 5)
@@ -214,8 +213,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(artistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trackField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trackLabel))
+                    .addComponent(songField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(songLabel))
                 .addGap(5, 5, 5)
                 .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(urlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,27 +356,27 @@ public class GUI extends javax.swing.JFrame {
     private void getLyricsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getLyricsButtonActionPerformed
 		if(lastfmCheckBox.isSelected()) {
 			Lastfm lf=new Lastfm(usernameField.getText());
-            artistField.setText(lf.getArtist()); trackField.setText(lf.getTrack());
-			lastfmUrlField.setText(lf.getTrackURL());
+            artistField.setText(lf.getArtist()); songField.setText(lf.getSong());
+			lastfmUrlField.setText(lf.getSongURL());
         } else {
 			String artist=artistField.getText();
-			String track=trackField.getText();
+			String song=songField.getText();
 			
 			try {
-				URI uri=new URI("http","www.last.fm","/music/"+artist+"/_/"+track,null,null);
+				URI uri=new URI("http","www.last.fm","/music/"+artist+"/_/"+song,null,null);
 				lastfmUrlField.setText(uri.toASCIIString().replace("%20", "+"));
 			} catch(URISyntaxException use) { System.err.println(use); }
 		}
         
-        lyric=new LyricWiki(artistField.getText(),trackField.getText());
+        lyric=new LyricWiki(artistField.getText(),songField.getText());
         if(karaokeTextyButton.isSelected()==true) { 
-            lyric=new KaraokeTexty(artistField.getText(),trackField.getText());
+            lyric=new KaraokeTexty(artistField.getText(),songField.getText());
         }
         if(lyricWikiButton.isSelected()==true) { 
-            lyric=new LyricWiki(artistField.getText(),trackField.getText());
+            lyric=new LyricWiki(artistField.getText(),songField.getText());
         }
         if(metroLyricsButton.isSelected()==true) { 
-            lyric=new MetroLyrics(artistField.getText(),trackField.getText());
+            lyric=new MetroLyrics(artistField.getText(),songField.getText());
         }
         
         urlField.setText(lyric.getURL());
@@ -486,9 +485,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel providerLabel;
     private javax.swing.ButtonGroup providers;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField songField;
+    private javax.swing.JLabel songLabel;
     private javax.swing.JScrollPane textScrollPane;
-    private javax.swing.JTextField trackField;
-    private javax.swing.JLabel trackLabel;
     private javax.swing.JTextField urlField;
     private javax.swing.JLabel urlLabel;
     private javax.swing.JButton urlOpenButton;
