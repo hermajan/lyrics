@@ -23,11 +23,21 @@ public class GUI extends javax.swing.JFrame {
     
     /**
      * Creates GUI.
+	 * @param artist Artist.
+	 * @param song Song.
      */
-    public GUI() {
+    public GUI(String artist, String song) {
         initComponents();
-        usernameField.setText(prop.getProperty("username"));
+		usernameField.setText(prop.getProperty("username"));
+		
+		artistField.setText(artist);
+		songField.setText(song);
+		getLyricsButton.doClick();
     }
+
+	public GUI() {
+		this("","");
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +79,7 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lyrics");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
         lyricTab.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -78,6 +89,7 @@ public class GUI extends javax.swing.JFrame {
         lyricPanel.setMaximumSize(new java.awt.Dimension(470, 580));
         lyricPanel.setPreferredSize(new java.awt.Dimension(470, 580));
 
+        artistLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         artistLabel.setLabelFor(artistField);
         artistLabel.setText("Artist:");
 
@@ -91,6 +103,7 @@ public class GUI extends javax.swing.JFrame {
         songField.setToolTipText("Name of the song.");
         songField.setPreferredSize(new java.awt.Dimension(445, 20));
 
+        urlLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         urlLabel.setLabelFor(urlField);
         urlLabel.setText("URL:");
         urlLabel.setToolTipText("Uniform resource locator.");
@@ -99,7 +112,7 @@ public class GUI extends javax.swing.JFrame {
         urlField.setToolTipText("URL of the song on a selected provider website.");
         urlField.setDoubleBuffered(true);
         urlField.setMaximumSize(new java.awt.Dimension(380, 20));
-        urlField.setPreferredSize(new java.awt.Dimension(450, 20));
+        urlField.setPreferredSize(new java.awt.Dimension(445, 20));
 
         providerLabel.setText("Provider:");
 
@@ -113,7 +126,7 @@ public class GUI extends javax.swing.JFrame {
 
         getLyricsButton.setText("Get lyrics");
         getLyricsButton.setToolTipText("Gets lyrics from a selected provider.");
-        getLyricsButton.setPreferredSize(new java.awt.Dimension(100, 23));
+        getLyricsButton.setPreferredSize(new java.awt.Dimension(105, 23));
         getLyricsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getLyricsButtonActionPerformed(evt);
@@ -142,7 +155,7 @@ public class GUI extends javax.swing.JFrame {
 
         urlOpenButton.setText("Open");
         urlOpenButton.setToolTipText("Opens lyrics of the song in a browser.");
-        urlOpenButton.setPreferredSize(new java.awt.Dimension(100, 23));
+        urlOpenButton.setPreferredSize(new java.awt.Dimension(105, 23));
         urlOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 urlOpenButtonActionPerformed(evt);
@@ -152,6 +165,7 @@ public class GUI extends javax.swing.JFrame {
         gTranslateButton.setText("<html>Google<br>Translate</html>");
         gTranslateButton.setToolTipText("Opens lyrics of the song in the Google Translate.");
         gTranslateButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gTranslateButton.setPreferredSize(new java.awt.Dimension(105, 37));
         gTranslateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gTranslateButtonActionPerformed(evt);
@@ -167,42 +181,28 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(lyricPanelLayout.createSequentialGroup()
                         .addComponent(textScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
                         .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(lyricPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(urlOpenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(lyricPanelLayout.createSequentialGroup()
-                                .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(lyricPanelLayout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(metroLyricsButton)
-                                            .addComponent(lyricWikiButton)
-                                            .addComponent(karaokeTextyButton)
-                                            .addComponent(lastfmCheckBox)
-                                            .addComponent(providerLabel)
-                                            .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(lyricPanelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(gTranslateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(urlOpenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(metroLyricsButton)
+                            .addComponent(lyricWikiButton)
+                            .addComponent(karaokeTextyButton)
+                            .addComponent(lastfmCheckBox)
+                            .addComponent(providerLabel)
+                            .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gTranslateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(lyricPanelLayout.createSequentialGroup()
                         .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(lyricPanelLayout.createSequentialGroup()
-                                .addComponent(urlLabel)
-                                .addGap(5, 5, 5)
-                                .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(lyricPanelLayout.createSequentialGroup()
-                                    .addComponent(songLabel)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(songField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(lyricPanelLayout.createSequentialGroup()
-                                    .addComponent(artistLabel)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(artistField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(5, 5, 5))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(urlLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(songLabel))
+                            .addComponent(artistLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(2, 2, 2)
+                        .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(songField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(artistField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(5, 5, 5))
         );
         lyricPanelLayout.setVerticalGroup(
             lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +220,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(urlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(urlLabel))
                 .addGap(5, 5, 5)
-                .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(lyricPanelLayout.createSequentialGroup()
                         .addComponent(urlOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
@@ -235,11 +235,10 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(lastfmCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(233, 233, 233)
-                        .addComponent(gTranslateButton)
-                        .addGap(8, 8, 8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gTranslateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(textScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(5, 5, 5))
         );
 
         lyricTab.addTab("Lyric", lyricPanel);
@@ -345,9 +344,7 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lyricTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(lyricTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
