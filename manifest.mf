@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
 Specification-Title: Lyrics
-Specification-Version: v0.5
+Specification-Version: v0.6
+Specification-Vendor: DJohnny

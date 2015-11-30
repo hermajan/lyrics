@@ -10,9 +10,7 @@ import org.jsoup.select.Elements;
 
 /**
  * Getting information from the Last.fm through their API.
- * 
- * @author DJohnny
- * @see <a href="http://www.last.fm/api/intro">http://www.last.fm/api/intro</a>
+ * @see <a href="http://www.last.fm/api/intro">Last.fm API introduction</a>
  */
 public class Lastfm {
     private String username,apikey="468e0ae50dbce978240ce1e4e6031602";

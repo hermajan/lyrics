@@ -7,8 +7,6 @@ import java.util.Properties;
 
 /**
  * Handling of settings.
- * 
- * @author DJohnny
  */
 public class Settings {
     private static final String filename="lyrics.properties";

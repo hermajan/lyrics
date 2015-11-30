@@ -11,9 +11,7 @@ import org.jsoup.select.Elements;
 
 /**
  * Obtaining lyrics from the LyricWiki.
- * 
- * @author DJohnny
- * @see <a href="http://lyrics.wikia.com/Lyrics_Wiki">http://lyrics.wikia.com/Lyrics_Wiki</a>
+ * @see <a href="http://lyrics.wikia.com/wiki/Lyrics_Wiki">LyricWiki</a>
  */
 public class LyricWiki extends Provider {
     public LyricWiki(String artist, String song) {
@@ -25,8 +23,8 @@ public class LyricWiki extends Provider {
     public void makeURL() { 
         try {
             String capitalizedSong=Library.capitalizeFirstLetters(super.getSong());
-            URI uri=new URI("http","lyrics.wikia.com","/"+super.getArtist()+":"+capitalizedSong,null,null);
-            super.setURL(uri.toASCIIString());
+            URI uri=new URI("http","lyrics.wikia.com","/wiki/"+super.getArtist()+":"+capitalizedSong,null,null);
+            super.setURL(uri.toASCIIString().replace("%20","_"));
         } catch(URISyntaxException use) { System.err.println(use); }
     }
     

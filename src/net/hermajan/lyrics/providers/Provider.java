@@ -1,9 +1,7 @@
 package net.hermajan.lyrics.providers;
 
 /**
- * Handling and obtaining lyrics.
- * 
- * @author DJohnny
+ * Handling and obtaining lyrics from some provider.
  */
 abstract public class Provider {
     private String artist, song, url="";
@@ -18,12 +16,12 @@ abstract public class Provider {
     abstract public void makeURL();
     
     /**
-     * 
+     * Returns lyrics.
      * @return Lyrics with HTML tags.
      */
     abstract public String parsing();
     /**
-     * 
+     * Returns lyrics.
      * @return Lyrics as clean text (without HTML tags).
      */
     abstract public String parsingText();

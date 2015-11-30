@@ -11,9 +11,7 @@ import org.jsoup.select.Elements;
 
 /**
  * Obtaining lyrics from the MetroLyrics.
- * 
- * @author DJohnny
- * @see <a href="http://www.metrolyrics.com">http://www.metrolyrics.com</a>
+ * @see <a href="http://www.metrolyrics.com">MetroLyrics</a>
  */
 public class MetroLyrics extends Provider {
     public MetroLyrics(String artist, String song) {

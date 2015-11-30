@@ -4,8 +4,6 @@ import org.jsoup.nodes.Node;
 
 /**
  * Library for some useful methods.
- * 
- * @author DJohnny
  */
 public class Library {
     

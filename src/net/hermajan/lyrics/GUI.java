@@ -14,7 +14,6 @@ import net.hermajan.lyrics.providers.Provider;
 
 /**
  * GUI (Graphical user interface) for the application.
- * @author DJohnny
  */
 public class GUI extends javax.swing.JFrame {
     private static final long serialVersionUID=1L;
@@ -30,8 +29,14 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
 		usernameField.setText(prop.getProperty("username"));
 		
-		artistField.setText(artist);
-		songField.setText(song);
+		if(artist.isEmpty() && song.isEmpty()) {
+			lastfmCheckBox.doClick();
+		}
+		else {
+			artistField.setText(artist);
+			songField.setText(song);
+		}
+		
 		getLyricsButton.doClick();
     }
 

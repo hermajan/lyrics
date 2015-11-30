@@ -12,8 +12,7 @@ import org.jsoup.select.Elements;
 
 /**
  * Obtaining lyrics from the KaraokeTexty.
- * @author DJohnny
- * @see <a href="http://www.karaoketexty.cz">http://www.karaoketexty.cz</a>
+ * @see <a href="http://www.karaoketexty.cz">KaraokeTexty</a>
  */
 public class KaraokeTexty extends Provider {
     public KaraokeTexty(String artist, String song) {
