@@ -1,5 +1,5 @@
 ###Lyrics
-Lyrics is a application for obtaining music lyrics from the internet.
+Lyrics is an application for showing music lyrics from the internet.
 
 It uses library [jsoup](https://github.com/jhy/jsoup) for parsing data.
 
