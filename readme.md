@@ -11,4 +11,5 @@ Run the file `lyrics.jar` or use command-line arguments:
 
 `lyrics.jar "artist" "song"`
 
+For example, command `lyrics.jar "Coldplay" "Fix you"` starts Lyrics and it shows you this:
 ![Lyrics](lyrics.png)
