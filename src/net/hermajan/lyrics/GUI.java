@@ -25,8 +25,9 @@ public class GUI extends javax.swing.JFrame {
      * Creates GUI.
 	 * @param artist Artist.
 	 * @param song Song.
+	 * @param provider Provider.
      */
-    public GUI(String artist, String song) {
+    public GUI(String artist, String song, String provider) {
         initComponents();
 		usernameField.setText(prop.getProperty("username"));
 		
@@ -38,11 +39,23 @@ public class GUI extends javax.swing.JFrame {
 			songField.setText(song);
 		}
 		
+		switch(provider) {
+			case "0":
+				karaokeTextyButton.doClick();
+				break;
+			case "1": default:
+				lyricWikiButton.doClick();
+				break;
+			case "2":
+				metroLyricsButton.doClick();
+				break;
+		}
+		
 		getLyricsButton.doClick();
     }
 
 	public GUI() {
-		this("","");
+		this("","","");
 	}
 
     /**
@@ -448,13 +461,22 @@ public class GUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-			GUI g;
-			if(args.length == 0) {
-				g = new GUI();
-			}
-			else {
-				// args[0] is an artist and args[1] is a song
-				g = new GUI(args[0], args[1]);
+			GUI g = new GUI();
+			switch(args.length) {
+				case 0:
+					g = new GUI();
+					break;
+				case 1:
+					if(args[0].matches("^[0-9]$")) {
+						g = new GUI("", "", args[0]);
+					}
+					break;
+				case 2:
+					g = new GUI(args[0], args[1], "");
+					break;
+				case 3: default:
+					g = new GUI(args[0], args[1], args[2]);
+					break;
 			}
 			g.setVisible(true);
 		});
