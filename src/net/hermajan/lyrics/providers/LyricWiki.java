@@ -50,11 +50,11 @@ public class LyricWiki extends Provider {
     
     @Override
     public String parsingText() {
-        String output=parsing();
-        output.replace("<br />","");
-        output.replace("<b>","").replace("</b>","");
-        output.replace("<i>","").replace("</i>","");
-        return output;
+		String output=parsing();
+		output=output.replace("<br />","");
+		output=output.replace("<b>","").replace("</b>","");
+		output=output.replace("<i>","").replace("</i>","");
+		return output;
     }
 
     @Override

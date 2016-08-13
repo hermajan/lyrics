@@ -70,9 +70,9 @@ public class KaraokeTexty extends Provider {
 
     @Override
     public String parsingText() {
-        String output=parsing();
-        output=output.replace("<br /> ",System.getProperty("line.separator"));
-        return output;
+		String output=parsing();
+		output=output.replace("<br /> ",System.getProperty("line.separator"));
+		return output;
     }
 
     @Override

@@ -46,9 +46,11 @@ public class MetroLyrics extends Provider {
 
     @Override
     public String parsingText() {
-        String output=parsing();
-        output=output.replace("<br /> ",System.getProperty("line.separator")).replace("</p>",System.getProperty("line.separator"));
-        return output;
+		String output=parsing();
+		output=output.replace("<br /> ",System.getProperty("line.separator"));
+		output=output.replace("<br/><br/>",System.getProperty("line.separator"));
+		output=output.replace("</p>",System.getProperty("line.separator"));
+		return output;
     }
 
     @Override
