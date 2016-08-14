@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.text.html.HTMLDocument;
 import net.hermajan.lyrics.providers.KaraokeTexty;
@@ -98,6 +99,7 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lyrics");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImage(new ImageIcon(this.getClass().getResource("icon.png")).getImage());
         setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
@@ -108,6 +110,8 @@ public class GUI extends javax.swing.JFrame {
         lyricPanel.setMaximumSize(new java.awt.Dimension(470, 580));
         lyricPanel.setPreferredSize(new java.awt.Dimension(470, 580));
 
+        artistLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        artistLabel.setForeground(new java.awt.Color(192, 1, 16));
         artistLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         artistLabel.setLabelFor(artistField);
         artistLabel.setText("Artist:");
@@ -115,6 +119,8 @@ public class GUI extends javax.swing.JFrame {
         artistField.setToolTipText("Artist of the song.");
         artistField.setPreferredSize(new java.awt.Dimension(445, 20));
 
+        songLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        songLabel.setForeground(new java.awt.Color(192, 1, 16));
         songLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         songLabel.setLabelFor(songField);
         songLabel.setText("Song:");
@@ -122,6 +128,8 @@ public class GUI extends javax.swing.JFrame {
         songField.setToolTipText("Name of the song.");
         songField.setPreferredSize(new java.awt.Dimension(445, 20));
 
+        urlLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        urlLabel.setForeground(new java.awt.Color(192, 1, 16));
         urlLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         urlLabel.setLabelFor(urlField);
         urlLabel.setText("URL:");
@@ -133,6 +141,8 @@ public class GUI extends javax.swing.JFrame {
         urlField.setMaximumSize(new java.awt.Dimension(380, 20));
         urlField.setPreferredSize(new java.awt.Dimension(445, 20));
 
+        providerLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        providerLabel.setForeground(new java.awt.Color(192, 1, 16));
         providerLabel.setText("Provider:");
 
         providers.add(lyricWikiButton);
@@ -143,6 +153,7 @@ public class GUI extends javax.swing.JFrame {
         metroLyricsButton.setText("MetroLyrics");
         metroLyricsButton.setMargin(new java.awt.Insets(0, 2, 0, 2));
 
+        getLyricsButton.setBackground(new java.awt.Color(192, 1, 16));
         getLyricsButton.setText("Get lyrics");
         getLyricsButton.setToolTipText("Gets lyrics from a selected provider.");
         getLyricsButton.setPreferredSize(new java.awt.Dimension(105, 23));
@@ -172,6 +183,7 @@ public class GUI extends javax.swing.JFrame {
         karaokeTextyButton.setText("Karaoke texty");
         karaokeTextyButton.setMargin(new java.awt.Insets(0, 2, 0, 2));
 
+        urlOpenButton.setBackground(new java.awt.Color(192, 1, 16));
         urlOpenButton.setText("Open");
         urlOpenButton.setToolTipText("Opens lyrics of the song in a browser.");
         urlOpenButton.setPreferredSize(new java.awt.Dimension(105, 23));
@@ -181,6 +193,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        gTranslateButton.setBackground(new java.awt.Color(192, 1, 16));
         gTranslateButton.setText("<html>Google<br>Translate</html>");
         gTranslateButton.setToolTipText("Opens lyrics of the song in the Google Translate.");
         gTranslateButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -211,11 +224,10 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(getLyricsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(gTranslateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(lyricPanelLayout.createSequentialGroup()
-                        .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(urlLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(songLabel))
-                            .addComponent(artistLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(artistLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(songLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(urlLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(2, 2, 2)
                         .addGroup(lyricPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(songField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,12 +276,15 @@ public class GUI extends javax.swing.JFrame {
 
         lastfmPanel.setPreferredSize(new java.awt.Dimension(470, 590));
 
+        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(192, 1, 16));
         usernameLabel.setText("Username:");
         usernameLabel.setToolTipText("");
 
         usernameField.setToolTipText("Last.fm username.");
         usernameField.setPreferredSize(new java.awt.Dimension(340, 20));
 
+        saveButton.setBackground(new java.awt.Color(192, 1, 16));
         saveButton.setText("Save");
         saveButton.setToolTipText("Saves a Last.fm username.");
         saveButton.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -285,10 +300,13 @@ public class GUI extends javax.swing.JFrame {
         lastfmUrlField.setMaximumSize(new java.awt.Dimension(450, 20));
         lastfmUrlField.setPreferredSize(new java.awt.Dimension(450, 20));
 
+        lastfmUrlLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        lastfmUrlLabel.setForeground(new java.awt.Color(192, 1, 16));
         lastfmUrlLabel.setLabelFor(urlField);
         lastfmUrlLabel.setText("URL of the song:");
         lastfmUrlLabel.setToolTipText("Uniform resource locator.");
 
+        lastfmUrlOpenButton.setBackground(new java.awt.Color(192, 1, 16));
         lastfmUrlOpenButton.setText("Open");
         lastfmUrlOpenButton.setToolTipText("Opens song on the Last.fm in a browser.");
         lastfmUrlOpenButton.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -298,6 +316,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        openProfileButton.setBackground(new java.awt.Color(192, 1, 16));
         openProfileButton.setText("Open profile");
         openProfileButton.setToolTipText("Opens Last.fm user profile in a browser.");
         openProfileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +332,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(lastfmPanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastfmUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(lastfmUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lastfmPanelLayout.createSequentialGroup()
                         .addComponent(lastfmUrlLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -342,12 +361,12 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(openProfileButton))
                 .addGap(20, 20, 20)
-                .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastfmUrlLabel)
-                    .addComponent(lastfmUrlOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(lastfmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lastfmUrlOpenButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastfmUrlLabel))
                 .addGap(5, 5, 5)
                 .addComponent(lastfmUrlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(446, Short.MAX_VALUE))
+                .addContainerGap(445, Short.MAX_VALUE))
         );
 
         lyricTab.addTab("Last.fm", lastfmPanel);

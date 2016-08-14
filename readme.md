@@ -23,6 +23,7 @@ Use Lyrics with number of command-line arguments:
 Providers are `"0"` for KaraokeTexty, `"1"` for LyricWiki, `"2"` for MetroLyrics.
 
 For example, command `java -cp lyrics.jar net.hermajan.lyrics.CLI "Coldplay" "Fix you" "1"` starts Lyrics and it shows you this:
+
 ![Lyrics CLI](lyrics-cli.png)
 
 ### Graphical user interface
@@ -31,4 +32,5 @@ Run the file `lyrics.jar` or use command-line arguments as above, but with comma
 `lyrics.jar "artist" "song"`
 
 For example, command `lyrics.jar "Coldplay" "Fix you"` starts Lyrics and it shows you this:
+
 ![Lyrics GUI](lyrics-gui.png)
