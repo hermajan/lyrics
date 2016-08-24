@@ -4,10 +4,10 @@ Lyrics is an application for showing music lyrics from the internet.
 It uses library [jsoup](https://github.com/jhy/jsoup) for parsing data.
 
 ## Download
-Latest version you can download [here](https://github.com/hermajan/lyrics/releases/latest).
+Latest version of runnable file `lyrics.jar` you can download [here](https://github.com/hermajan/lyrics/releases/latest).
 
 ## Usage
-First you need to have installed [Java](https://www.java.com/en/download/faq/whatis_java.xml) on your computer. Then you can choose between command-line interface and graphical user interface.
+First you need to have installed [Java](https://www.java.com/en/download/faq/whatis_java.xml) on your computer. Then you can choose between command-line interface or graphical user interface.
 
 ### Command-line interface
 Run the application with following command: 
